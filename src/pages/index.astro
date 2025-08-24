@@ -1,0 +1,170 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'North Shore Precision Teaching | Evidence-Based Learning Support',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Free 15-Minute Consultation',
+        href: '/contact',
+        target: '_self',
+        icon: 'tabler:calendar',
+      },
+      { text: 'Learn More About Our Services', href: '#services' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'A child focused on learning' }}
+  >
+    <Fragment slot="title">
+      Unlock Their <span class="text-accent dark:text-white">True Potential.</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Our scientific approach to learning builds the confidence and fluency your child needs to succeed where other methods fall short.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note
+    title="A Smarter Approach to Learning:"
+    description="When standard tutoring isn't enough, it's often because it only addresses the symptoms of a learning challenge, not the root cause. We go deeper, systematically rebuilding academic skills to ensure a solid foundation for a lifetime of learning."
+  />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="services"
+    tagline="Our Services"
+    title="Specialized Instruction for Lasting Success"
+    subtitle="We provide three distinct, one-on-one programs designed to build genuine confidence and create unstoppable learners."
+    items={[
+      {
+        title: 'Reading Curriculum',
+        description:
+          "For students who struggle with sounding out words, reading smoothly, or understanding what they've read. This is a complete reconstruction of reading ability, moving from foundational sounds to fluent, expressive passage reading.",
+        icon: 'tabler:book',
+      },
+      {
+        title: 'Foundations Curriculum',
+        description:
+          'This program focuses on "learning how to learn." Based on the principles of Relational Frame Theory, we teach the cognitive building blocks for flexible problem-solving, perspective-taking, and critical thinking.',
+        icon: 'tabler:blocks',
+      },
+      {
+        title: 'Behaviour Consultation', // TODO: Change the language to better describe the service
+        description:
+          "As a Board Certified Behaviour Analyst, I provide practical, evidence-based strategies to help families navigate challenging behaviours, build positive routines, and strengthen parent-child relationships.",
+        icon: 'tabler:heart-handshake',
+      },
+    ]}
+  />
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="Your Path to Progress"
+    subtitle="We make getting started simple and transparent. Our process is designed to build confidence and provide clarity from the very first step."
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Free Consultation</span>',
+        description:
+          "It all begins with a free, no-obligation 15-minute consultation. This is a chance for us to discuss your child's specific needs and for you to determine if our scientific approach is the right fit for your family.",
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Baseline Assessment</span>',
+        description:
+          'Our diagnostic process is seamlessly integrated into the first two hours of instruction. We use standardized tools and curriculum-based measures to get a precise, data-driven starting point.',
+        icon: 'tabler:clipboard-list',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Data-Driven Instruction</span>',
+        description:
+          'We begin our intensive, one-on-one sessions. Every session is fast-paced, positive, and engaging, with progress tracked daily to ensure your child is on the fastest path to success.',
+        icon: 'tabler:chart-scatter',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'A clear path forward',
+    }}
+  />
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Frequently Asked Questions"
+    subtitle="Get answers to common questions about our evidence-based approach to learning."
+    tagline="FAQs"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'How is North Shore Precision Teaching different from regular tutoring?',
+        description:
+          "While regular tutoring often focuses on homework help, we go deeper to rebuild academic skills from the ground up. Our methods ensure your child masters each skill, building a solid foundation for future learning. Every session is driven by data, so you can see objective, measurable progress.",
+      },
+      {
+        title: 'What kind of students do you work with?',
+        description:
+          'We work with any learner between the ages of 5 and 18, including students struggling in reading, children with diagnosed disabilities like dyslexia or autism, and gifted learners who want to accelerate their skills.',
+      },
+      {
+        title: 'What are Direct Instruction and Precision Teaching?', // TODO: Change the language about how DI and PT are used in tandem
+        description:
+          "We use a powerful two-part approach. First, we use Direct Instruction to teach new skills in a highly structured way that leaves no room for confusion. Once a skill is taught, we use Precision Teaching to measure it and build fluency—the ability to perform the skill smoothly and effortlessly, like a musician playing an instrument.",
+      },
+      {
+        title: 'My child finds learning stressful. How do you keep them engaged?',
+        description:
+          'Our sessions are designed to be fast-paced, positive, and engaging. We use a reward system where learners earn points for beating their personal bests. The biggest motivator, however, is success itself. When students see their own progress on their charts every session, their confidence soars.',
+      },
+      {
+        title: 'Do you offer online tutoring?',
+        description:
+          'Yes, we work hard to be flexible and accessible for all. Online sessions provide an accessible way to access our academic services while still remaining equally as effective as in-person sessions. This allows us to serve families across British Columbia and beyond. For local families on the North Shore, we offer in-home sessions as well.',
+      },
+      {
+        title: 'How do we get started?',
+        description:
+          'The process is simple. The first step is to book a free, no-obligation 15-minute consultation. This allows us to discuss your child\'s specific needs and determine if our approach is the right fit for your family.',
+      },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Free 15-Minute Consultation',
+        href: '/contact',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Let's Start the Conversation.
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Take the first step. Schedule your free consultation today and discover how our scientific approach can make a real difference for your child.
+    </Fragment>
+  </CallToAction>
+</Layout>
