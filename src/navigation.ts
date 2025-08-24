@@ -6,8 +6,8 @@ export const headerData = {
       text: 'Services',
       href: getPermalink('/services'),
       links: [
-         { text: 'Academic Support', href: '#academic-support' } ,
-         { text: 'Behaviour Consultation', href: '#behaviour-consultation' }
+         { text: 'Academic Support', href: '/services#academic-support' } ,
+         { text: 'Behaviour Consultation', href: '/services#behaviour-consultation' }
       ],
     },
     {
@@ -32,8 +32,8 @@ export const footerData = {
     {
       title: 'Services',
       links: [
-        { text: 'Academic Support', href: '#academic-support' } ,
-        { text: 'Behaviour Consultation', href: '#behaviour-consultation' }
+        { text: 'Academic Support', href: '/services/#academic-support' } ,
+        { text: 'Behaviour Consultation', href: '/services/#behaviour-consultation' }
       ],
     },
     /*{
