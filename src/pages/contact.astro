@@ -12,12 +12,14 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText tagline="Contact" title="Let's Start the Conversation" />
+
+  <!-- ContactUs Widget ****************** -->
 
   <ContactUs
     id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    title="Take the First Step"
+    subtitle="The best way to get started is to book a free, 15-minute consultation. This allows us to discuss your child's specific needs and determine if our approach is the right fit. For general questions, feel free to use the form below."
     inputs={[
       {
         type: 'text',
@@ -37,41 +39,28 @@ const metadata = {
       label:
         'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
     }}
-    description="Our support team typically responds within 24 business hours."
+    description="I typically respond to inquiries within one business day."
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
+    title="How to Connect"
     items={[
       {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
+        title: 'Book a Free Consultation',
+        description: `The most effective way to get started. Schedule a 15-minute, no-obligation call directly in my calendar to discuss your family's needs.`,
+        icon: 'tabler:calendar',
       },
       {
-        title: 'Contact sales',
+        title: 'Send an Email',
         description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
-      },
-      {
-        title: 'Technical support',
-        description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
-      },
-      {
-        title: 'Phone',
-        description: '+1 (234) 567-890',
-        icon: 'tabler:headset',
-      },
-      {
-        title: 'Email',
-        description: 'contact@support.com',
+          'For general inquiries, you can reach me at contact@northshoreprecisionteaching.ca. I do my best to respond to all emails within 24 business hours.',
         icon: 'tabler:mail',
       },
       {
-        title: 'Location',
-        description: '1234 Lorem Ipsum St, 12345, Miami, EEUU',
+        title: 'Our Location',
+        description: 'Serving families online across British Columbia and in-person on the North Shore.',
         icon: 'tabler:map-pin',
       },
     ]}
