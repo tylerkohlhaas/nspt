@@ -167,6 +167,12 @@ export interface Input {
   label?: string;
   autocomplete?: string;
   placeholder?: string;
+  options?: Array<Option>; // Add options for select inputs
+}
+
+export interface Option {
+  label: string;
+  value: string;
 }
 
 export interface Textarea {

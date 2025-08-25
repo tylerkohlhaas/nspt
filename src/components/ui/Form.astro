@@ -2,34 +2,84 @@
 import type { Form as Props } from '~/types';
 import Button from '~/components/ui/Button.astro';
 
+// Destructure the form props with default values
+// This is a common pattern in Astro components to provide fallback values
 const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
+
 ---
 
-<form>
+<!-- 
+  Form Component - A flexible, reusable form component
+  
+  Best Practices:
+  - Always use semantic HTML elements (form, label, input, etc.)
+  - Include proper accessibility attributes (id, name, required)
+  - Use consistent styling classes for visual consistency
+  - Provide clear labels and placeholders for better UX
+  - Handle both text inputs and select dropdowns dynamically
+-->
+
+<form id="contactForm" method="POST" class="space-y-6">
+  {/* 
+    Dynamically render form inputs based on the inputs array
+    Each input can be a text field, email, select dropdown, etc.
+    The map function iterates over each input and renders the appropriate HTML element
+  */}
   {
     inputs &&
       inputs.map(
-        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '' }) =>
+        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '', options }) =>
           name && (
             <div class="mb-6">
+              {/* 
+                Always include labels for accessibility - screen readers need them
+                The 'for' attribute connects the label to the input via the input's 'id'
+              */}
               {label && (
                 <label for={name} class="block text-sm font-medium">
                   {label}
                 </label>
               )}
+              
+              {/* 
+                Conditional rendering: If it's a select input and has options, render a dropdown
+                Otherwise, render a regular text input
+                This makes the component flexible for different input types
+              */}
+              {type === 'select' && options ? (
+                <select
+                  name={name}
+                  id={name}
+                  required
+                  class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+
+                  <option value="" disabled selected>Select a service...</option>
+
+                  {options.map(({ label: optionLabel, value }) => (
+                    <option value={value}>{optionLabel}</option>
+                  ))}
+                </select>
+              ) : (
               <input
                 type={type}
                 name={name}
                 id={name}
                 autocomplete={autocomplete}
                 placeholder={placeholder}
+                required
                 class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
               />
+            )}
             </div>
           )
       )
   }
 
+  {/* 
+    Optional textarea section - only renders if textarea prop is provided
+    This follows the principle of conditional rendering for optional components
+  */}
   {
     textarea && (
       <div>
@@ -41,12 +91,17 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
           name={textarea.name ? textarea.name : 'message'}
           rows={textarea.rows ? textarea.rows : 4}
           placeholder={textarea.placeholder}
+          required
           class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
         />
       </div>
     )
   }
 
+  {/* 
+    Optional disclaimer checkbox - commonly used for terms and conditions
+    The checkbox is required to ensure users acknowledge the disclaimer
+  */}
   {
     disclaimer && (
       <div class="mt-3 flex items-start">
@@ -55,6 +110,7 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
             id="disclaimer"
             name="disclaimer"
             type="checkbox"
+            required
             class="cursor-pointer mt-1 py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
           />
         </div>
@@ -67,16 +123,25 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
     )
   }
 
+  {/* 
+    Submit button - uses the Button component for consistent styling
+    The button text can be customized via the button prop
+  */}
   {
     button && (
       <div class="mt-10 grid">
-        <Button variant="primary" type="submit">
-          {button}
+        <Button variant="primary" type="submit" id="submitBtn">
+          <span id="buttonText">{button}</span>
+          <span id="loadingText" class="hidden">Sending...</span>
         </Button>
       </div>
     )
   }
 
+  {/* 
+    Optional description text below the form
+    Useful for additional instructions or contact information
+  */}
   {
     description && (
       <div class="mt-3 text-center">
@@ -84,4 +149,92 @@ const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } 
       </div>
     )
   }
+
+  {/* Success and error message display */}
+  <div id="messageContainer" class="hidden mt-4 p-4 rounded-lg">
+    <p id="messageText" class="text-sm"></p>
+  </div>
 </form>
+
+<script>
+  console.log('form script loaded!')
+  // This script runs on the client side after the page loads
+  // It handles form submission and communicates with our API endpoint
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm') as HTMLFormElement;
+    const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+    const buttonText = document.getElementById('buttonText') as HTMLSpanElement;
+    const loadingText = document.getElementById('loadingText') as HTMLSpanElement;
+    const messageContainer = document.getElementById('messageContainer') as HTMLDivElement;
+    const messageText = document.getElementById('messageText') as HTMLParagraphElement;
+    
+    if (!form) return;
+    
+    // Handle form submission
+    form.addEventListener('submit', async function(e) {
+      console.log('form submitted!')
+      e.preventDefault(); // Prevent the default form submission
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      buttonText.classList.add('hidden');
+      loadingText.classList.remove('hidden');
+      
+      // Hide any previous messages
+      messageContainer.classList.add('hidden');
+      
+      try {
+        // Create FormData object from the form
+        // FormData automatically collects all form fields with their names and values
+        const formData = new FormData(form);
+        
+        // Send the form data to our API endpoint
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData
+        });
+        
+        // Parse the response from our API
+        const result = await response.json();
+        
+        if (response.ok) {
+          // Success - show success message
+          showMessage(result.message, 'success');
+          form.reset(); // Clear the form
+        } else {
+          // Error - show error message
+          showMessage(result.message || 'An error occurred. Please try again.', 'error');
+        }
+        
+      } catch (error) {
+        // Network or other unexpected error
+        console.error('Form submission error:', error);
+        showMessage('Network error. Please check your connection and try again.', 'error');
+      } finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        buttonText.classList.remove('hidden');
+        loadingText.classList.add('hidden');
+      }
+    });
+    
+    // Helper function to display messages to the user
+    function showMessage(message: string, type: 'success' | 'error') {
+      messageText.textContent = message;
+      messageContainer.className = `mt-4 p-4 rounded-lg ${
+        type === 'success' 
+          ? 'bg-green-100 border border-green-400 text-green-700 dark:bg-green-900 dark:border-green-700 dark:text-green-300' 
+          : 'bg-red-100 border border-red-400 text-red-700 dark:bg-red-900 dark:border-red-700 dark:text-red-300'
+      }`;
+      messageContainer.classList.remove('hidden');
+      
+      // Auto-hide success messages after 5 seconds
+      if (type === 'success') {
+        setTimeout(() => {
+          messageContainer.classList.add('hidden');
+        }, 5000);
+      }
+    }
+  });
+</script>
