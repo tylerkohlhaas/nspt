@@ -50,7 +50,7 @@ export const footerData = {
       title: 'Company',
       links: [
         { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
+        /*{ text: 'Blog', href: '#' },
         { text: 'Careers', href: '#' },
         /*{ text: 'Press', href: '#' },
         { text: 'Inclusion', href: '#' },

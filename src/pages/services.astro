@@ -4,6 +4,8 @@ import Content from '~/components/widgets/Content.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import Note from '~/components/widgets/Note.astro';
+
 
 const metadata = {
   title: 'Our Services',
@@ -14,125 +16,153 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero
-    tagline="Our Services"
-    title="Evidence-Based Instruction for Lasting Success"
-    subtitle="We provide specialized, one-on-one programs designed to build foundational skills, create confident learners, and support positive family dynamics."
-    actions={[{ variant: 'primary', target: '_self', text: 'Book a Free Consultation', href: '/contact' }]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      alt: 'Focused learning session',
-    }}
-  />
+  tagline="Our Services"
+  title="Specialized Instruction for Lasting Success"
+  subtitle="We provide three distinct, one-on-one programs designed to build genuine confidence, support families, and help students thrive."
+  actions={[{ variant: 'primary', target: '_self', text: 'Book a Free 15-Minute Consultation', href: '/contact' }]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?...',
+    alt: 'Focused learning session',
+  }}
+/>
 
-  <!-- Features2 Widget ************** -->
+<Features2
+  title="Our Core Programs"
+  subtitle="Each program is grounded in scientific principles, tailored to your child’s unique needs, and designed to create measurable, lasting results."
+  columns={3}
+  items={[
+    {
+      title: 'Reading Curriculum',
+      description:
+        'For students who struggle with sounding out words, reading smoothly, or understanding text. We systematically rebuild reading ability—moving from sounds to fluent, expressive passage reading—so learners can finally feel confident tackling any academic challenge.',
+      icon: 'tabler:book',
+    },
+    {
+      title: 'Foundations Curriculum',
+      description:
+        'This program teaches the skills behind learning itself. We focus on flexible problem-solving, perspective-taking, and critical thinking, giving students the tools to learn more effectively across every subject.',
+      icon: 'tabler:puzzle',
+    },
+    {
+      title: 'Behaviour Consultation',
+      description:
+        'Practical, evidence-based strategies to support positive behaviour at home and at school. Together, we create routines that work and strengthen parent-child relationships.',
+      icon: 'tabler:heart-handshake',
+    },
+  ]}
+/>
+
+  <Fragment slot="content">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Direct Instruction</h3>
+    <p class="text-lg text-gray-600 dark:text-slate-400 mb-4">
+      We teach new skills using a highly structured, step-by-step method that leaves no room for confusion. Every child knows exactly what to do—and succeeds before moving forward.
+    </p>
+  </Fragment>
+
 
   <Features2
-    title="Our Core Curriculums & Services"
-    subtitle="Discover our three distinct programs, each built on a foundation of scientific principles and tailored to the unique needs of your child and family."
-    columns={3}
-    items={[
-      {
-        title: 'Reading Curriculum',
-        description:
-          'A complete reconstruction of reading ability. We move systematically from foundational sounds to fluent, expressive passage reading, building confident readers who are ready for any academic challenge.',
-        icon: 'tabler:book',
-      },
-      {
-        title: 'Foundations Curriculum',
-        description:
-          'This program focuses on "learning how to learn." We teach the cognitive building blocks for flexible problem-solving, perspective-taking, and critical thinking, creating more effective and resilient learners.',
-        icon: 'tabler:puzzle',
-      },
-      {
-        title: 'Behaviour Consultation', //TODO: Improve language/description, include school support
-        description:
-          'Practical, evidence-based strategies to help families navigate challenging behaviours. We work together to build positive routines and strengthen your parent-child relationship.',
-        icon: 'tabler:heart-handshake',
-      },
-    ]}
-  />
+  title="Academic Support Programs"
+  subtitle="Two specialized curricula designed to build core academic skills and learning foundations."
+  columns={2}
+  items={[
+    {
+      title: 'Reading Curriculum',
+      description:
+        'For students who struggle with sounding out words, reading smoothly, or understanding text. We systematically rebuild reading ability—moving from sounds to fluent, expressive passage reading—so learners can finally feel confident tackling any academic challenge.',
+      icon: 'tabler:book',
+    },
+    {
+      title: 'Foundations Curriculum',
+      description:
+        'This program teaches the skills behind learning itself. We focus on flexible problem-solving, perspective-taking, and critical thinking, giving students the tools to learn more effectively across every subject.',
+      icon: 'tabler:puzzle',
+    },
+  ]}
+/>
 
-  <!-- Content Widget **************** -->
+<Content
+  isReversed
+  items={[
+    {
+      title: 'Direct Instruction',
+      description:
+        'We teach new skills using a highly structured, step-by-step method that leaves no room for confusion. Every child knows exactly what to do—and succeeds before moving forward.',
+      icon: 'tabler:direction-sign',
+    },
+    {
+      title: 'Precision Teaching',
+      description:
+        'Once a skill is learned, we focus on fluency: the ability to use it smoothly, confidently, and automatically—like a musician playing without hesitation.',
+      icon: 'tabler:chart-line',
+    },
+    {
+      title: 'Data-Driven Decisions',
+      description:
+        'We track progress every single session. With objective data, we know instantly what’s working and can adjust to keep your child moving forward at the fastest pace possible.',
+      icon: 'tabler:target-arrow',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?...',
+    alt: 'A chart showing progress',
+  }}
+>
+<Fragment slot="content">
+  <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Our Approach</h3>
+</Fragment>
+</Content>
+<Note
+  icon="tabler:separator"
+  title="Different Approach, Same Commitment to Success"
+  description="While our academic programs rebuild skills directly with students, behaviour consultation focuses on empowering families with the tools to create lasting positive change at home and school."
+/>
 
-  <Content
-    isReversed
-    items={[
-      {
-        title: 'Direct Instruction',
-        description:
-          'We teach new skills using a highly structured and systematic method that leaves no room for confusion. Complex skills are broken down into small, manageable steps to ensure mastery.',
-        icon: 'tabler:direction-sign',
-      },
-      {
-        title: 'Precision Teaching',
-        description:
-          'Once a skill is taught, we use brief, timed activities to measure it and build fluency—the ability to perform the skill smoothly and effortlessly, like a musician playing an instrument.',
-        icon: 'tabler:chart-line',
-      },
-      {
-        title: 'Data-Driven Decisions',
-        description:
-          'We track progress on our charts every single session. This allows us to see exactly what’s working and make immediate, objective decisions to ensure your child is always on the fastest path to success.',
-        icon: 'tabler:target-arrow',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-      alt: 'A chart showing progress',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Our Methodology</h3>
-      Our powerful two-part approach ensures students learn skills correctly and can use them effortlessly.
-    </Fragment>
-  </Content>
+<Content
+  items={[
+    {
+      title: 'Guidance for Families',
+      description:
+        'We work closely with parents and caregivers to understand your unique family dynamics, challenges, and goals—so strategies fit your life, not the other way around.',
+      icon: 'tabler:users',
+    },
+    {
+      title: 'Practical, Proven Tools',
+      description:
+        'Step-by-step strategies grounded in behavioural science that you can start using right away to reduce stress and build positive routines.',
+      icon: 'tabler:brain',
+    },
+    {
+      title: 'Growth That Lasts',
+      description:
+        'As your child develops, we adapt strategies along the way—ensuring progress is sustainable and keeps building over time.',
+      icon: 'tabler:refresh',
+    },
+  ]}
+  image={{
+    src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+    alt: 'Family consultation session',
+  }}
+>
+  <Fragment slot="content">
+    <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Behaviour Consultation</h3>
+    <p class="text-lg text-gray-600 dark:text-slate-400 mb-4">
+      Practical, evidence-based strategies to support positive behaviour at home and at school. Together, we help reduce challenges, build routines that work, and bring more calm and confidence into daily life.
+    </p>
+    <p class="text-gray-600 dark:text-slate-400">
+      Unlike our academic programs that focus on teaching students directly, behaviour consultation equips parents with the knowledge and tools to create meaningful, lasting change in their child’s behaviour and in the family dynamic as a whole.
+    </p>
+  </Fragment>
+</Content>
 
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'Positive Reinforcement',
-        description:
-          'Our "Fluency Rewards System" motivates learners by awarding points for beating their personal bests. Success itself becomes the biggest motivator.',
-        icon: 'tabler:award',
-      },
-      {
-        title: 'Building Confidence',
-        description:
-          'Our sessions are designed to be fast-paced, positive, and engaging. When students see their own progress daily, their confidence and willingness to try new things soar.',
-        icon: 'tabler:mood-smile',
-      },
-      {
-        title: 'Family Partnership',
-        description:
-          'We believe in working collaboratively with parents. We provide the data and insights you need to understand your child\'s progress and support their journey.',
-        icon: 'tabler:users',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-      alt: 'A parent and child working together',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">More Than Just Academics</h3>
-      We focus on creating a positive learning environment that fosters confidence, motivation, and a strong family partnership.
-    </Fragment>
-  </Content>
-
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Book a Free Consultation',
-        href: '/contact',
-      },
-    ]}
-    title="Ready to See the Difference?"
-    subtitle="Take the first step. Schedule your free, no-obligation consultation today to discuss your child's specific needs and learn how our scientific approach can help."
-  />
+<CallToAction
+  actions={[
+    {
+      variant: 'primary',
+      text: 'Book a Free 15-Minute Consultation',
+      href: '/contact',
+    },
+  ]}
+  title="See the Difference for Yourself"
+  subtitle="Take the first step today. Schedule your free consultation and discover how our scientific approach can help your child move from frustration to fluency."
+/>
 </Layout>

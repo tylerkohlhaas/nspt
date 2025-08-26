@@ -1,10 +1,10 @@
 site:
   name: North Shore Precision Teaching
-  site: 'https://northshoreprecisionteaching.com'
+  site: 'https://northshoreprecisionteaching.ca'
   base: '/'
   trailingSlash: false
 
-  # googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId: G2vkB8N1SWLPv7bF7yv2jSl_k9k0J9uXhCxQUVX0a4g
 
 # Default SEO metadata
 metadata:
