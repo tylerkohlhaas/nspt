@@ -1,9 +1,20 @@
 ---
 import { SITE } from 'astrowind:config';
+import logoImage from '~/assets/images/logo.png'
 ---
+<img 
+  src={logoImage.src} 
+  alt={SITE?.name || 'Logo'}
+  class="h-8 w-auto md:h-10" 
+/>
 
+<!-- 
+  The following span displays the site name using the SITE config variable.
+  We are commenting it out as requested. 
+  You can uncomment it later if you want to show the site name in the logo area.
 <span
   class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
 >
   {SITE?.name}
 </span>
+-->
